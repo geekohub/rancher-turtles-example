@@ -1,0 +1,20 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: dev-aws-workers
+  namespace: clusters
+spec:
+  replicas: 3
+  clusterName: dev-aws-cluster
+  template:
+    spec:
+      version: v1.28.3
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: dev-aws-workers-bootstrap
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+        kind: AWSMachineTemplate
+        name: dev-aws-workers-template
