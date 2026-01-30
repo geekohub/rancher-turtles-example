@@ -1,0 +1,15 @@
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: KubeadmControlPlane
+metadata:
+  name: dev-aws-control-plane
+  namespace: clusters
+spec:
+  replicas: 3
+  version: v1.32.1
+  machineTemplate:
+    infrastructureRef:
+      apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+      kind: AWSMachineTemplate
+      name: dev-aws-control-plane-template
+  kubeadmConfigSpec:
+    clusterConfiguration: {}
