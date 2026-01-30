@@ -1,0 +1,19 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: AWSCluster
+metadata:
+  name: dev-aws-cluster
+  namespace: clusters
+spec:
+  region: us-east-1
+  sshKeyName: rancher-key
+  network:
+    vpc:
+      id: vpc-1234567890abcdef
+    subnets:
+      - id: subnet-aaaa
+      - id: subnet-bbbb
+  controlPlaneLoadBalancer:
+    scheme: internet-facing
+  identityRef:
+    kind: Secret
+    name: aws-credentials
